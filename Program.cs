@@ -8,6 +8,8 @@ namespace i2ctest
     {
         static void Main(string[] args)
         {
+            var counter = 0;
+            
             // declare arrays to convert readings
             byte[] co2Bytes = new byte[4];
             byte[] tempBytes = new byte[4];
@@ -75,12 +77,13 @@ namespace i2ctest
                 rhBytes[3] = dataBuffer[12];
 
                 // report to console
+                Console.WriteLine($"Readings = {++counter}");
                 Console.WriteLine($"CO2 = {BitConverter.ToSingle(co2Bytes,0)}");
                 Console.WriteLine($"Temp = {BitConverter.ToSingle(tempBytes,0)}");
                 Console.WriteLine($"R.H. = {BitConverter.ToSingle(rhBytes,0)}");
                 Console.WriteLine();
 
-                Thread.Sleep(1000);
+                Thread.Sleep(2000);
             }
         }
     }
